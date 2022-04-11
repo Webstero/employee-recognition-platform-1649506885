@@ -42,11 +42,11 @@ class KudosController < ApplicationController
 
   # DELETE /kudos/1
   def destroy
-    if @kudo.giver_id != current_employee.id
-      redirect_to kudos_url, notice: 'You aren`t owner of Kudo.'
-    else
+    if @kudo.giver_id == current_employee.id
       @kudo.destroy
       redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
+    else
+      redirect_to kudos_url, notice: 'You aren`t owner of Kudo.'
     end
   end
 
