@@ -3,7 +3,9 @@
 module Admins
   class SessionsController < Devise::SessionsController
     include Accessible
+    # rubocop:disable LexicallyScopedActionFilter
     skip_before_action :check_resource, only: :destroy
+    # rubocop:enable LexicallyScopedActionFilter
 
     # def after_sign_in_path_for(resource)
     #   admins_root_path
