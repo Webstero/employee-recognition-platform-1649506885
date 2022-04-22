@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  
   devise_for :employees
   
   devise_for :admins, path: 'admins', controllers: { sessions: 'admins/sessions'}, :skip => :registration
@@ -13,6 +14,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admins do
+    resources :kudos
+  end
+  
   resources :kudos
 
   root to: "kudos#index"
