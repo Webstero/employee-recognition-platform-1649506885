@@ -6,7 +6,7 @@ RSpec.describe 'The create process', type: :feature do
   let!(:employee) { create(:employee) }
 
   before do
-    visit root_path
+    visit new_employee_session_path
   end
 
   it 'Create Kudo with correct credentials' do

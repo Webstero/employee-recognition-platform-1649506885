@@ -5,7 +5,7 @@ RSpec.describe 'The signin process as admin', type: :feature do
   let(:admin) { create(:admin) }
 
   before do
-    visit root_path
+    visit new_employee_session_path
   end
 
   it 'Signing in with correct credentials' do
