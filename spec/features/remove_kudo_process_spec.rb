@@ -5,7 +5,7 @@ RSpec.describe 'The remove process', type: :feature do
   let(:kudo) { create(:kudo) }
 
   before do
-    visit root_path
+    visit new_employee_session_path
   end
 
   it 'Remove Kudo as giver' do

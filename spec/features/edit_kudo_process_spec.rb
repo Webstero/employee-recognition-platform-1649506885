@@ -5,7 +5,7 @@ RSpec.describe 'The edit process', type: :feature do
   let(:kudo) { create(:kudo) }
 
   before do
-    visit root_path
+    visit new_employee_session_path
   end
 
   it 'Edit Kudo as giver with a change in the title' do

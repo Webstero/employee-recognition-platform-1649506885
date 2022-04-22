@@ -5,7 +5,7 @@ RSpec.describe 'The signin process', type: :feature do
   let(:employee) { create(:employee) }
 
   before do
-    visit root_path
+    visit new_employee_session_path
   end
 
   it 'Signing in with correct credentials' do
