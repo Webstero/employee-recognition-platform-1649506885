@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Kudo, type: :model do
+  let(:receiver) { create(:employee) }
+  let(:giver) { create(:employee) }
+
   context 'when validation is successful' do
     it 'returns true' do
-      expect(build(:kudo)).to be_valid
+      expect(build(:kudo, giver_id: giver.id, receiver_id: receiver.id)).to be_valid
     end
   end
 
