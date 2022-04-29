@@ -30,7 +30,7 @@ RSpec.describe 'The signin process as admin', type: :feature do
     fill_in 'Email', with: ''
     fill_in 'Password', with: admin.password
     click_button 'Log in'
-    expect(page).to have_text 'Invalid Email or password.'
+    expect(page).to have_content 'Invalid Email or password.'
     expect(page).to have_current_path(new_admin_session_path)
   end
 end
