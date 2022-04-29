@@ -1,11 +1,11 @@
 module Admins
-  class KudosController < ApplicationController
+  class EmployeesController < ApplicationController
     before_action :authenticate_admin!
-    before_action :set_kudo, only: %i[show destroy]
+    before_action :set_employee, only: %i[show edit update destroy]
 
     # GET /admins/kudos
     def index
-      @kudos = Kudo.all.order(:id)
+      @employees = Employee.all.order(:id)
     end
 
     # GET /admins/kudos/1
@@ -17,8 +17,7 @@ module Admins
     # end
 
     # GET /admins/kudos/1/edit
-    # def edit
-    # end
+    def edit; end
 
     # POST /admins/kudos
     # def create
@@ -40,22 +39,31 @@ module Admins
     #   end
     # end
 
+    # PATCH/PUT /admins/employee/1
+    def update
+      if @employee.update(employee_params.compact_blank)
+        redirect_to admins_employees_path, notice: 'Employee was successfully updated.'
+      else
+        render :edit
+      end
+    end
+
     # DELETE /admins/kudos/1
     def destroy
-      @kudo.destroy
-      redirect_to admins_kudos_path, notice: 'Kudo was successfully destroyed.'
+      @employee.destroy
+      redirect_to admins_employees_path, notice: 'Employee was successfully destroyed.'
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_kudo
-      @kudo = Kudo.find(params[:id])
+    def set_employee
+      @employee = Employee.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def kudo_params
-      params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
+    def employee_params
+      params.require(:employee).permit(:email, :password, :id, :number_of_available_kudos)
     end
   end
 end

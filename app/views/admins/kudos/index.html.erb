@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Title</th>
       <th>Content</th>
       <th>Giver</th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @kudos.each do |kudo| %>
       <tr>
+        <td><%= kudo.id %></td>
         <td><%= kudo.title %></td>
         <td><%= kudo.content %></td>
         <td><%= kudo.giver.email %></td>
@@ -27,4 +29,5 @@
 
 <br>
 
-<%# <%= link_to 'New Kudo', new_kudo_path %> 
+<%= link_to 'Back', admins_root_path %> 
+
