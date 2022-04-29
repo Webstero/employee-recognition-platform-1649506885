@@ -1,0 +1,33 @@
+<h1>Employees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Email</th>
+      <th>Available kudos</th>
+      <th>Creation time</th>
+      <th>Update time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.id %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.number_of_available_kudos%></td>
+        <td><%= employee.created_at%></td>
+        <td><%= employee.updated_at%></td>
+        <td><%= link_to 'Show', admins_employee_path(employee) %></td>
+        <td><%= link_to 'Edit', edit_admins_employee_path(employee) %></td>
+        <td><%= link_to 'Destroy', admins_employee_path(employee), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', admins_root_path %> 
