@@ -5,7 +5,7 @@ module Admins
 
     # GET /admins/kudos
     def index
-      @kudos = Kudo.all
+      @kudos = Kudo.all.order(:id)
     end
 
     # GET /admins/kudos/1
