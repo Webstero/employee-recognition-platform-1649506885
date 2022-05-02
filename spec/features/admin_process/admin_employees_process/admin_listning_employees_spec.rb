@@ -17,8 +17,10 @@ RSpec.describe 'Admin listing employee', type: :feature do
     expect(page).to have_current_path(admins_root_path)
     click_link 'Manage Employees'
     expect(page).to have_current_path(admins_employees_path)
-    expect(page).to have_text employee.email
     expect(page).to have_text employee.id
+    expect(page).to have_text employee.email
     expect(page).to have_text employee.number_of_available_kudos
+    expect(page).to have_text employee.created_at
+    expect(page).to have_text employee.updated_at
   end
 end
