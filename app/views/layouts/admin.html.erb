@@ -18,17 +18,11 @@
       <nav>
         <h4>Navigation</h4>
         <ul>
-          <% if employee_signed_in? %>
-            <li><%= link_to 'Sign out', destroy_employee_session_path, method: :delete %></li>
-            <li><%= "Number of available kudos: #{current_employee.number_of_available_kudos}" %></li>
-           <% elsif !admin_signed_in? %>
-            <li><%= link_to "Sign in", new_employee_session_path %></li>
-            <li><%= link_to 'Sign up', new_employee_registration_path %></li>
-          <% end %>
           <% if admin_signed_in? %>
+            <li><%= link_to 'Manage Kudos', admins_kudos_path %></li>   
+            <li><%= link_to 'Manage Employees', admins_employees_path %></li> 
+            <li><%= link_to 'Manage Company values', admins_company_values_path %></li>
             <li><%= link_to 'Sign out as Admin', destroy_admin_session_path, method: :delete %></li>     
-          <% elsif !employee_signed_in? %>
-            <li> <%= link_to "Sign in as Admin", new_admin_session_path %></li> 
           <% end %>
         </ul>
       </nav>
