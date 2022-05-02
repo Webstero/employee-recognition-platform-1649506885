@@ -16,3 +16,8 @@ Kudo.create!(title: 'From console', content: 'Something', giver: Employee.find_b
 1.upto(2) do |i|
   Admin.create!(email: "admin#{i}@test.com", password: 'password')
 end
+
+CompanyValue.create!(title: 'Honesty')
+CompanyValue.create!(title: 'Ownership')
+CompanyValue.create!(title: 'Accountability')
+CompanyValue.create!(title: 'Passion')
