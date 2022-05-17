@@ -1,6 +1,5 @@
 module Admins
-  class EmployeesController < ApplicationController
-    before_action :authenticate_admin!
+  class EmployeesController < AdminController
     before_action :set_employee, only: %i[show edit update destroy]
 
     def index

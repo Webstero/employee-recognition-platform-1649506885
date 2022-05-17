@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Employee, type: :model do
+  let(:employee) { create(:employee) }
+
   context 'when validation is successful' do
     it 'returns true' do
       expect(build(:employee)).to be_valid
@@ -14,6 +16,10 @@ RSpec.describe Employee, type: :model do
 
     it 'is not valid without a password' do
       expect(build(:employee, password: '')).not_to be_valid
+    end
+
+    it 'is the same a email' do
+      expect(build(:employee, email: employee.email)).not_to be_valid
     end
   end
 end

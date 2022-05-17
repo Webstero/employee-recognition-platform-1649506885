@@ -1,6 +1,5 @@
 module Admins
-  class KudosController < ApplicationController
-    before_action :authenticate_admin!
+  class KudosController < AdminController
     before_action :set_kudo, only: %i[show destroy]
 
     def index
