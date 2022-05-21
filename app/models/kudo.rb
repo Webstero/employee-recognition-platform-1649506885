@@ -1,6 +1,8 @@
 class Kudo < ApplicationRecord
   belongs_to :giver, class_name: 'Employee'
   belongs_to :receiver, class_name: 'Employee'
+  belongs_to :company_value
+
   before_create :decrease_available_kudos
   after_destroy :increase_available_kudos
 
@@ -11,7 +13,7 @@ class Kudo < ApplicationRecord
   private
 
   def giver_other_than_receiver
-    errors.add(:base, 'Rceiver must be different than giver') unless giver_id != receiver_id
+    errors.add(:base, 'Receiver must be different than giver') unless giver_id != receiver_id
   end
 
   def decrease_available_kudos
