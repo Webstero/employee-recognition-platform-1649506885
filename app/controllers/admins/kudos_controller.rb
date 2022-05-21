@@ -25,4 +25,3 @@ module Admins
     end
   end
 end
-Add reference for kudos and company_value.
