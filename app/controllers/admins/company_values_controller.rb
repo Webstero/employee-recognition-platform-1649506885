@@ -1,16 +1,16 @@
 module Admins
   class CompanyValuesController < AdminController
-    before_action :set_company_value, only: %i[edit update destroy]
-
     def index
-      @company_values = CompanyValue.all.order(:id)
+      @company_values = CompanyValue.all.order(:created_at)
     end
 
     def new
       @company_value = CompanyValue.new
     end
 
-    def edit; end
+    def edit
+      set_company_value
+    end
 
     def create
       @company_value = CompanyValue.new(company_value_params)
@@ -23,6 +23,7 @@ module Admins
     end
 
     def update
+      set_company_value
       if @company_value.update(company_value_params)
         redirect_to admins_company_values_path, notice: 'Company value was successfully updated.'
       else
@@ -31,6 +32,7 @@ module Admins
     end
 
     def destroy
+      set_company_value
       @company_value.destroy
       redirect_to admins_company_values_path, notice: 'Company value was successfully destroyed.'
     end
