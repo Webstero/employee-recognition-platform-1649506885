@@ -5,7 +5,6 @@ RSpec.describe 'Admin deleted employee', type: :feature do
   let(:admin) { create(:admin) }
   let!(:giver) { create(:employee) }
   let!(:receiver) { create(:employee) }
-  let!(:kudo) { create(:kudo, giver_id: giver.id, receiver_id: receiver.id) }
 
   before do
     visit new_employee_session_path

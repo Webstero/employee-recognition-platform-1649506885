@@ -4,6 +4,7 @@ require 'capybara/rspec'
 RSpec.describe 'The available kudos process', type: :feature do
   let(:current_employee) { build(:employee) }
   let!(:employee) { create(:employee) }
+  let!(:company_value) { create(:company_value) }
 
   before do
     visit new_employee_session_path
@@ -23,7 +24,8 @@ RSpec.describe 'The available kudos process', type: :feature do
     click_link 'New Kudo'
     fill_in 'Title', with: 'Test title'
     fill_in 'Content', with: 'Test content'
-    select(employee.email, from: 'Receiver')
+    select employee.email, from: 'kudo_receiver_id'
+    select company_value.title, from: 'kudo_company_value_id'
     click_button 'Create Kudo'
     expect(page).to have_content 'Kudo was successfully created.'
     expect(page).to have_current_path(kudos_path)
