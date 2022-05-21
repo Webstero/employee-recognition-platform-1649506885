@@ -11,13 +11,16 @@
   Employee.create!(email: "employee#{i}@test.com", password: 'password')
 end
 
-Kudo.create!(title: 'From console', content: 'Something', giver: Employee.find_by(email: 'employee1@test.com'), receiver: Employee.find_by(email: 'employee2@test.com'))
+CompanyValue.create!(title: 'Honesty')
+CompanyValue.create!(title: 'Ownership')
+CompanyValue.create!(title: 'Accountability')
+CompanyValue.create!(title: 'Passion')
+
+Kudo.create!(title: 'From console', content: 'Something', giver: Employee.find_by(email: 'employee1@test.com'), receiver: Employee.find_by(email: 'employee2@test.com'), company_value_id: CompanyValue.first[:id] )
 
 1.upto(2) do |i|
   Admin.create!(email: "admin#{i}@test.com", password: 'password')
 end
 
-CompanyValue.create!(title: 'Honesty')
-CompanyValue.create!(title: 'Ownership')
-CompanyValue.create!(title: 'Accountability')
-CompanyValue.create!(title: 'Passion')
+
+
