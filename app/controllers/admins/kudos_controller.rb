@@ -5,18 +5,18 @@ module Admins
     end
 
     def show
-      set_kudo
+      kudo
     end
 
     def destroy
-      set_kudo
+      kudo
       @kudo.destroy
       redirect_to admins_kudos_path, notice: 'Kudo was successfully destroyed.'
     end
 
     private
 
-    def set_kudo
+    def kudo
       @kudo = Kudo.find(params[:id])
     end
 

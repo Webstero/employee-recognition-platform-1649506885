@@ -9,7 +9,7 @@ module Admins
     end
 
     def edit
-      set_company_value
+      company_value
     end
 
     def create
@@ -23,7 +23,7 @@ module Admins
     end
 
     def update
-      set_company_value
+      company_value
       if @company_value.update(company_value_params)
         redirect_to admins_company_values_path, notice: 'Company value was successfully updated.'
       else
@@ -32,14 +32,14 @@ module Admins
     end
 
     def destroy
-      set_company_value
+      company_value
       @company_value.destroy
       redirect_to admins_company_values_path, notice: 'Company value was successfully destroyed.'
     end
 
     private
 
-    def set_company_value
+    def company_value
       @company_value = CompanyValue.find(params[:id])
     end
 

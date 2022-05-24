@@ -5,15 +5,15 @@ module Admins
     end
 
     def show
-      set_employee
+      employee
     end
 
     def edit
-      set_employee
+      employee
     end
 
     def update
-      set_employee
+      employee
       if @employee.update(employee_params.compact_blank)
         redirect_to admins_employees_path, notice: 'Employee was successfully updated.'
       else
@@ -22,14 +22,14 @@ module Admins
     end
 
     def destroy
-      set_employee
+      employee
       @employee.destroy
       redirect_to admins_employees_path, notice: 'Employee was successfully destroyed.'
     end
 
     private
 
-    def set_employee
+    def employee
       @employee = Employee.find(params[:id])
     end
 

@@ -19,6 +19,7 @@ gem 'webpacker', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bullet'
 gem 'devise'
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
