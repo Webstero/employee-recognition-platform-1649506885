@@ -6,4 +6,6 @@ class Employee < ApplicationRecord
 
   has_many :giver_kudos, class_name: 'Kudo', foreign_key: 'giver_id', dependent: :destroy, inverse_of: :giver
   has_many :receiver_kudos, class_name: 'Kudo', foreign_key: 'receiver_id', dependent: :destroy, inverse_of: :receiver
+
+  scope :all_without, ->(ids) { where.not(id: ids) }
 end

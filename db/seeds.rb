@@ -1,23 +1,19 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
 1.upto(5) do |i|
   Employee.create!(email: "employee#{i}@test.com", password: 'password')
 end
 
-Kudo.create!(title: 'From console', content: 'Something', giver: Employee.find_by(email: 'employee1@test.com'), receiver: Employee.find_by(email: 'employee2@test.com'))
+%w[Honesty Ownership Accountability Passion].each do |company_value_title|
+  CompanyValue.create!(title: company_value_title)
+end
+
+1.upto(9) do
+  kudo = Kudo.create! title: Faker::Name.unique.name, 
+  content: Faker::Hacker.say_something_smart, 
+  giver: Employee.where("id = ? OR id = ?", Employee.first.id, Employee.second.id).sample, 
+  receiver: Employee.where.not("id = ? OR id = ?", Employee.first.id, Employee.second.id).sample, 
+  company_value_id: CompanyValue.all.sample[:id]
+end 
 
 1.upto(2) do |i|
   Admin.create!(email: "admin#{i}@test.com", password: 'password')
 end
-
-CompanyValue.create!(title: 'Honesty')
-CompanyValue.create!(title: 'Ownership')
-CompanyValue.create!(title: 'Accountability')
-CompanyValue.create!(title: 'Passion')

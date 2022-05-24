@@ -17,7 +17,9 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bullet'
 gem 'devise'
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'

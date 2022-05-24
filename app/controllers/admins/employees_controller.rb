@@ -1,16 +1,19 @@
 module Admins
   class EmployeesController < AdminController
-    before_action :set_employee, only: %i[show edit update destroy]
-
     def index
-      @employees = Employee.all.order(:id)
+      @employees = Employee.all.order(:created_at)
     end
 
-    def show; end
+    def show
+      employee
+    end
 
-    def edit; end
+    def edit
+      employee
+    end
 
     def update
+      employee
       if @employee.update(employee_params.compact_blank)
         redirect_to admins_employees_path, notice: 'Employee was successfully updated.'
       else
@@ -19,13 +22,14 @@ module Admins
     end
 
     def destroy
+      employee
       @employee.destroy
       redirect_to admins_employees_path, notice: 'Employee was successfully destroyed.'
     end
 
     private
 
-    def set_employee
+    def employee
       @employee = Employee.find(params[:id])
     end
 

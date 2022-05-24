@@ -16,16 +16,10 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :kudos
-  end
-  
-  namespace :admins do
     resources :employees
-  end
-
-  namespace :admins do
     resources :company_values
   end
- 
+  
   resources :kudos
 
   root to: "kudos#index"
