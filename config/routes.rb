@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :kudos
     resources :employees
     resources :company_values
+    resources :rewards
   end
   
   resources :kudos
