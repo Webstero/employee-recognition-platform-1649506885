@@ -1,6 +1,6 @@
 <h1>Company value</h1>
 
-<table class="table">
+<table>
   <thead>
     <tr>
       <th>Id</th>
@@ -18,13 +18,13 @@
         <td><%= company_value.title %></td>
         <td><%= company_value.created_at%></td>
         <td><%= company_value.updated_at%></td>
-        <td><%= link_to 'Edit', edit_admins_company_value_path(company_value), class: "btn btn-primary" %></td>
-        <td><%= link_to 'Destroy', admins_company_value_path(company_value), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %></td>
+        <td><%= link_to 'Edit', edit_admins_company_value_path(company_value) %></td>
+        <td><%= link_to 'Destroy', admins_company_value_path(company_value), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'New Company value', new_admins_company_value_path, class: "btn btn-primary" %> &nbsp
-<%= link_to 'Back', admins_root_path, class: "btn btn-secondary" %>
+<%= link_to 'New Company value', new_admins_company_value_path %> |
+<%= link_to 'Back', admins_root_path %>

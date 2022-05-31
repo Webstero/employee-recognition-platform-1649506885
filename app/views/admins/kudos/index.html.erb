@@ -1,6 +1,6 @@
 <h1>Kudos</h1>
 
-<table class="table">
+<table>
   <thead>
     <tr>
       <th>Id</th>
@@ -22,8 +22,8 @@
         <td><%= kudo.giver.email %></td>
         <td><%= kudo.receiver.email%></td>
         <td><%= kudo.company_value.title %></td>
-        <td><%= link_to 'Show', admins_kudo_path(kudo), class: "btn btn-dark" %></td>
-        <td><%= link_to 'Destroy', admins_kudo_path(kudo), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <td><%= link_to 'Show', admins_kudo_path(kudo) %></td>
+        <td><%= link_to 'Destroy', admins_kudo_path(kudo), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,5 +31,5 @@
 
 <br>
 
-<%= link_to 'Back', admins_root_path,class: "btn btn-secondary"  %> 
+<%= link_to 'Back', admins_root_path %> 
 

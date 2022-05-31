@@ -7,11 +7,14 @@ RSpec.describe 'The create process', type: :feature do
   let!(:company_value) { create(:company_value) }
 
   before do
-    sign_in current_employee
-    visit root_path
+    visit new_employee_session_path
   end
 
   it 'Create Kudo with correct credentials' do
+    fill_in 'Email', with: current_employee.email
+    fill_in 'Password', with: current_employee.password
+    click_button 'Log in'
+    expect(page).to have_current_path(root_path)
     click_link 'New Kudo'
     fill_in 'Title', with: 'Test title'
     fill_in 'Content', with: 'Test content'
@@ -23,6 +26,9 @@ RSpec.describe 'The create process', type: :feature do
   end
 
   it 'Create Kudo without a title' do
+    fill_in 'Email', with: current_employee.email
+    fill_in 'Password', with: current_employee.password
+    click_button 'Log in'
     click_link 'New Kudo'
     fill_in 'Title', with: ''
     fill_in 'Content', with: 'Test content'
@@ -34,6 +40,9 @@ RSpec.describe 'The create process', type: :feature do
   end
 
   it 'Create Kudo without a content' do
+    fill_in 'Email', with: current_employee.email
+    fill_in 'Password', with: current_employee.password
+    click_button 'Log in'
     click_link 'New Kudo'
     fill_in 'Title', with: 'Test title'
     fill_in 'Content', with: ''

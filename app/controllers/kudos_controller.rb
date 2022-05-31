@@ -1,4 +1,6 @@
 class KudosController < ApplicationController
+  include ApplicationHelper
+
   before_action :authenticate_employee!
 
   def index
