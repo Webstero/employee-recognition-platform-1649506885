@@ -6,18 +6,13 @@ RSpec.describe 'Admin create reward', type: :feature do
   let(:reward) { create(:reward) }
 
   before do
-    visit root_path
+    sign_in admin
+    visit admins_root_path
+    click_link 'Manage Rewards'
+    click_link 'New Reward'
   end
 
   it 'Create Reward with correct credentials' do
-    click_link 'Sign in as Admin'
-    fill_in 'Email', with: admin.email
-    fill_in 'Password', with: admin.password
-    click_button 'Log in'
-    expect(page).to have_current_path(admins_root_path)
-    click_link 'Manage Rewards'
-    expect(page).to have_current_path(admins_rewards_path)
-    click_link 'New Reward'
     fill_in 'Title', with: reward.title
     fill_in 'Description', with: reward.description
     fill_in 'Price', with: reward.price
@@ -27,14 +22,6 @@ RSpec.describe 'Admin create reward', type: :feature do
   end
 
   it 'Create Reward without a title' do
-    click_link 'Sign in as Admin'
-    fill_in 'Email', with: admin.email
-    fill_in 'Password', with: admin.password
-    click_button 'Log in'
-    expect(page).to have_current_path(admins_root_path)
-    click_link 'Manage Rewards'
-    expect(page).to have_current_path(admins_rewards_path)
-    click_link 'New Reward'
     fill_in 'Title', with: ''
     fill_in 'Description', with: reward.description
     fill_in 'Price', with: reward.price
@@ -45,14 +32,6 @@ RSpec.describe 'Admin create reward', type: :feature do
   end
 
   it 'Create Reward without a description' do
-    click_link 'Sign in as Admin'
-    fill_in 'Email', with: admin.email
-    fill_in 'Password', with: admin.password
-    click_button 'Log in'
-    expect(page).to have_current_path(admins_root_path)
-    click_link 'Manage Rewards'
-    expect(page).to have_current_path(admins_rewards_path)
-    click_link 'New Reward'
     fill_in 'Title', with: reward.title
     fill_in 'Description', with: ''
     fill_in 'Price', with: reward.price
@@ -63,14 +42,6 @@ RSpec.describe 'Admin create reward', type: :feature do
   end
 
   it 'Create Reward with null or less price' do
-    click_link 'Sign in as Admin'
-    fill_in 'Email', with: admin.email
-    fill_in 'Password', with: admin.password
-    click_button 'Log in'
-    expect(page).to have_current_path(admins_root_path)
-    click_link 'Manage Rewards'
-    expect(page).to have_current_path(admins_rewards_path)
-    click_link 'New Reward'
     fill_in 'Title', with: reward.title
     fill_in 'Description', with: reward.description
     fill_in 'Price', with: 0
@@ -81,14 +52,6 @@ RSpec.describe 'Admin create reward', type: :feature do
   end
 
   it 'Create Reward without price' do
-    click_link 'Sign in as Admin'
-    fill_in 'Email', with: admin.email
-    fill_in 'Password', with: admin.password
-    click_button 'Log in'
-    expect(page).to have_current_path(admins_root_path)
-    click_link 'Manage Rewards'
-    expect(page).to have_current_path(admins_rewards_path)
-    click_link 'New Reward'
     fill_in 'Title', with: reward.title
     fill_in 'Description', with: reward.description
     fill_in 'Price', with: nil

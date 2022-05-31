@@ -6,15 +6,11 @@ RSpec.describe 'Admin update employee', type: :feature do
   let!(:employee) { create(:employee) }
 
   before do
-    visit new_employee_session_path
+    sign_in admin
+    visit admins_root_path
   end
 
   it 'Succes updating email and number of available kudos without changing password' do
-    click_link 'Sign in as Admin'
-    fill_in 'Email', with: admin.email
-    fill_in 'Password', with: admin.password
-    click_button 'Log in'
-    expect(page).to have_current_path(admins_root_path)
     click_link 'Manage Employees'
     expect(page).to have_current_path(admins_employees_path)
     click_link 'Edit'
@@ -32,11 +28,6 @@ RSpec.describe 'Admin update employee', type: :feature do
   end
 
   it 'Succes updating password' do
-    click_link 'Sign in as Admin'
-    fill_in 'Email', with: admin.email
-    fill_in 'Password', with: admin.password
-    click_button 'Log in'
-    expect(page).to have_current_path(admins_root_path)
     click_link 'Manage Employees'
     expect(page).to have_current_path(admins_employees_path)
     click_link 'Edit'
