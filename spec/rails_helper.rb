@@ -10,6 +10,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner-active_record'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
@@ -55,6 +56,11 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.include FactoryBot::Syntax::Methods
+
+  # config.include Warden::Test::Helpers
+  # Warden.test_mode!
+
+  config.include Devise::Test::IntegrationHelpers, type: :feature
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false

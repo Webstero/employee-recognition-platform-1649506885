@@ -11,36 +11,37 @@
       </ul>
     </div>
   <% end %>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= "Id: #{@employee.id}" %>
+    </div>
 
-  <div class="field">
-    <%= "Id: #{@employee.id}" %>
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :number_of_available_kudos %>
+      <%= form.number_field :number_of_available_kudos, class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= "Creation time: #{@employee.created_at}" %>
+    </div>
+
+    <div class="form-group">
+      <%= "Update time: #{@employee.updated_at}" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+    <br>
   </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= form.label :number_of_available_kudos %>
-    <%= form.number_field :number_of_available_kudos %>
-  </div>
-
-  <div class="field">
-    <%= "Creation time: #{@employee.created_at}" %>
-  </div>
-
-  <div class="field">
-    <%= "Update time: #{@employee.updated_at}" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-
 <% end %>

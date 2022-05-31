@@ -11,24 +11,24 @@
   </head>
 
   <body>
-    <h1><%= link_to 'Company', root_path %></h1>
+    <h1><%= link_to 'Company', root_path, class:  "btn btn-success btn-lg" %></h1>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
       <nav>
         <h4>Navigation</h4>
-        <ul>
+        <ul class ="nav">
           <% if employee_signed_in? %>
-            <li><%= link_to 'Sign out', destroy_employee_session_path, method: :delete %></li>
-            <li><%= "Number of available kudos: #{current_employee.number_of_available_kudos}" %></li>
+            <button type="button" class="btn btn-info"><%= "Number of available kudos: #{current_employee.number_of_available_kudos}" %></button>&nbsp
+            <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class: "btn btn-warning"  %>&nbsp
            <% elsif !admin_signed_in? %>
-            <li><%= link_to "Sign in", new_employee_session_path %></li>
-            <li><%= link_to 'Sign up', new_employee_registration_path %></li>
+            <%= link_to "Sign in", new_employee_session_path, class: "btn btn-primary" %>&nbsp
+            <%= link_to 'Sign up', new_employee_registration_path, class: "btn btn-primary" %>&nbsp
           <% end %>
           <% if admin_signed_in? %>
-            <li><%= link_to 'Sign out as Admin', destroy_admin_session_path, method: :delete %></li>     
+            <%= link_to 'Sign out as Admin', destroy_admin_session_path, method: :delete, class: "btn btn-warning" %>&nbsp    
           <% elsif !employee_signed_in? %>
-            <li> <%= link_to "Sign in as Admin", new_admin_session_path %></li> 
+            <%= link_to "Sign in as Admin", new_admin_session_path, class: "btn btn-primary" %>&nbsp
           <% end %>
         </ul>
       </nav>

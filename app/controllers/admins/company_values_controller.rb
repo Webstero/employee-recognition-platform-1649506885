@@ -14,7 +14,6 @@ module Admins
 
     def create
       @company_value = CompanyValue.new(company_value_params)
-
       if @company_value.save
         redirect_to admins_company_values_path, notice: 'Company value was successfully created.'
       else
