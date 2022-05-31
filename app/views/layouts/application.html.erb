@@ -20,6 +20,8 @@
         <ul class ="nav">
           <% if employee_signed_in? %>
             <button type="button" class="btn btn-info"><%= "Number of available kudos: #{current_employee.number_of_available_kudos}" %></button>&nbsp
+            <%= link_to 'Kudos', root_path, class: "btn btn-primary"  %>&nbsp
+            <%= link_to 'Rewards', rewards_path, class: "btn btn-primary"  %>&nbsp
             <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class: "btn btn-warning"  %>&nbsp
            <% elsif !admin_signed_in? %>
             <%= link_to "Sign in", new_employee_session_path, class: "btn btn-primary" %>&nbsp
