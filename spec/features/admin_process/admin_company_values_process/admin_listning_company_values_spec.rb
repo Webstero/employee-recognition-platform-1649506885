@@ -4,6 +4,7 @@ require 'capybara/rspec'
 RSpec.describe 'Admin listing company value', type: :feature do
   let(:admin) { create(:admin) }
   let!(:company_value) { create(:company_value) }
+  let!(:second_company_value) { create(:company_value) }
 
   before do
     sign_in admin
@@ -17,5 +18,9 @@ RSpec.describe 'Admin listing company value', type: :feature do
     expect(page).to have_text company_value.title
     expect(page).to have_text company_value.created_at
     expect(page).to have_text company_value.updated_at
+    expect(page).to have_text second_company_value.id
+    expect(page).to have_text second_company_value.title
+    expect(page).to have_text second_company_value.created_at
+    expect(page).to have_text second_company_value.updated_at
   end
 end
