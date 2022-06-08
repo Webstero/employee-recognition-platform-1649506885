@@ -3,11 +3,11 @@ class Kudo < ApplicationRecord
   belongs_to :receiver, class_name: 'Employee'
   belongs_to :company_value
 
-  before_create :decrease_available_kudos
-  after_create :earned_points
+  after_create :decrease_available_kudos
+  after_create :increase_earned_points
 
   after_destroy :increase_available_kudos
-  after_destroy :earned_points
+  after_destroy :decrease_earned_points
 
   validates :title, :content, presence: true
 
@@ -27,7 +27,11 @@ class Kudo < ApplicationRecord
     giver.update!(number_of_available_kudos: giver.number_of_available_kudos + 1)
   end
 
-  def earned_points
-    receiver.update!(earned_points: receiver.receiver_kudos.count)
+  def decrease_earned_points
+    receiver.update!(earned_points: receiver.earned_points - 1)
+  end
+
+  def increase_earned_points
+    receiver.update!(earned_points: receiver.earned_points + 1)
   end
 end
