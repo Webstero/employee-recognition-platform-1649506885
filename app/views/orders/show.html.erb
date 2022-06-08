@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date of order:</strong>
+  <%= @order.created_at %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @order.reward.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @order.reward.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @order.reward.price%>
+</p>
+
+
+
+<%= link_to 'Back', orders_path, class: "btn btn-secondary"%>
