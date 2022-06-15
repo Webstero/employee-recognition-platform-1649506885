@@ -3,7 +3,8 @@ require 'capybara/rspec'
 
 RSpec.describe 'Admin delete kudo', type: :feature do
   let(:admin) { create(:admin) }
-  let!(:kudo) { create(:kudo) }
+  let!(:receiver) { create(:employee, earned_points: 1) }
+  let!(:kudo) { create(:kudo, receiver_id: receiver.id) }
 
   before do
     sign_in admin

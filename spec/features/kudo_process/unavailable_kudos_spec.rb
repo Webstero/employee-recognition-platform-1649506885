@@ -3,12 +3,11 @@ require 'capybara/rspec'
 
 RSpec.describe 'Can`t create kudo with unavailable number of kudos', type: :feature do
   let!(:receiver) { create(:employee) }
-  let!(:giver) { create(:employee) }
+  let!(:giver) { create(:employee, number_of_available_kudos: 0) }
   let!(:company_value) { create(:company_value) }
 
   before do
     visit new_employee_session_path
-    create_list(:kudo, 10, giver_id: giver.id, receiver_id: receiver.id, company_value_id: company_value.id)
   end
 
   it 'Success' do
