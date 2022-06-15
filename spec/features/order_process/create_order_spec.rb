@@ -14,12 +14,12 @@ RSpec.describe 'Employee create order', type: :feature do
     expect(page).to have_content 'Number of earned points: 1'
     click_link 'New Order'
     expect(page).to have_current_path(new_order_path)
-    click_link 'Buy'
+    all('a', text: 'Buy')[0].click
     expect(page).to have_current_path(orders_path)
     expect(page).to have_content 'You bought a reward.'
     expect(page).to have_content 'Number of earned points: 0'
     click_link 'New Order'
-    click_link 'Buy'
+    all('a', text: 'Buy')[0].click
     expect(page).to have_content 'You dont`t have enough erned points to buy a rewards.'
   end
 end
