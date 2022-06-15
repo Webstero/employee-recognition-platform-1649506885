@@ -9,9 +9,12 @@ module Admins
     end
 
     def destroy
-      kudo
-      @kudo.destroy
-      redirect_to admins_kudos_path, notice: 'Kudo was successfully destroyed.'
+      ::Kudos::DestroyService.new.call(kudo: kudo, employee: kudo.giver, skip_validation: true)
+      flash[:notice] = 'Kudo was successfully destroyed.'
+      redirect_to admins_kudos_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:error] = e.to_s
+      redirect_to admins_kudos_path
     end
 
     private

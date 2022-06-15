@@ -14,18 +14,16 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(**order_params, employee_id: current_employee.id)
-    price = @order.reward.price
-    if current_employee.earned_points - price >= 0
-      if @order.save
-        current_employee.update!(earned_points: current_employee.earned_points - price)
-        redirect_to orders_path, notice: 'You bought a reward.'
-      else
-        redirect_to orders_path, notice: 'You can`t create order.'
-      end
-    else
-      redirect_to new_order_path, notice: 'You dont`t have enough erned points to buy a rewards.'
-    end
+    @order = Order.new(**order_params, employee: current_employee)
+    ::Orders::CreateService.new.call(order: @order, employee: current_employee)
+    flash[:notice] = 'You bought a reward.'
+    redirect_to orders_path
+  rescue ActiveRecord::RecordInvalid => e
+    flash[:error] = e.to_s
+    redirect_to orders_path
+  rescue ::Orders::EarnedPointsException => e
+    flash[:error] = e.to_s
+    redirect_to new_order_path
   end
 
   private
