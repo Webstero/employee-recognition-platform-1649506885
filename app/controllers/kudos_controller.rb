@@ -10,7 +10,6 @@ class KudosController < ApplicationController
   end
 
   def new
-    @kudo = Kudo.new
     form_params
   end
 
@@ -21,35 +20,35 @@ class KudosController < ApplicationController
 
   def create
     @kudo = Kudo.new(kudo_params)
-    @kudo.giver = current_employee
-    if @kudo.save
-      redirect_to kudos_path, notice: 'Kudo was successfully created.'
-    else
-      form_params
-      render :new
-    end
+    ::Kudos::CreateService.new.call(kudo: @kudo, employee: current_employee)
+    flash[:notice] = 'Kudo was successfully created.'
+    redirect_to kudos_path
+  rescue ActiveRecord::RecordInvalid => e
+    flash[:error] = e.to_s
+    form_params
+    render :new
   end
 
   def update
-    kudo
-    if @kudo.giver_id != current_employee.id
-      redirect_to kudos_url, notice: 'You aren`t owner of Kudo.'
-    elsif @kudo.update(kudo_params)
-      redirect_to @kudo, notice: 'Kudo was successfully updated.'
-    else
-      form_params
-      render :edit
-    end
+    ::Kudos::UpdateService.new.call(kudo: kudo, employee: current_employee, **kudo_params.to_unsafe_hash.symbolize_keys)
+    flash[:notice] = 'Kudo was successfully updated.'
+    redirect_to action: 'show', id: params[:id]
+  rescue ActiveRecord::RecordInvalid => e
+    flash[:error] = e.to_s
+    form_params
+    render :edit
+  rescue ::Kudos::InvalidOwnerException => e
+    flash[:error] = e.to_s
+    redirect_to action: 'show', id: params[:id]
   end
 
   def destroy
-    kudo
-    if @kudo.giver_id == current_employee.id
-      @kudo.destroy
-      redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
-    else
-      redirect_to kudos_url, notice: 'You aren`t owner of Kudo.'
-    end
+    ::Kudos::DestroyService.new.call(kudo: kudo, employee: current_employee, skip_validation: false)
+    flash[:notice] = 'Kudo was successfully destroyed.'
+    redirect_to kudos_path
+  rescue ActiveRecord::RecordInvalid, ::Kudos::InvalidOwnerException => e
+    flash[:error] = e.to_s
+    redirect_to kudos_path
   end
 
   private
@@ -59,7 +58,7 @@ class KudosController < ApplicationController
   end
 
   def kudo_params
-    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id, :company_value_id)
+    params.require(:kudo).permit(:title, :content, :receiver_id, :company_value_id)
   end
 
   def form_params

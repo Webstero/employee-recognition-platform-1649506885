@@ -16,22 +16,47 @@ module Admins
       reward
     end
 
+    # def create
+    #   @reward = Reward.new(reward_params)
+    #   if @reward.save
+    #     redirect_to admins_rewards_path, notice: 'Reward was successfully created.'
+    #   else
+    #     render :new
+    #   end
+    # end
+
+    # def update
+    #   reward
+    #   if @reward.update!(reward_params)
+    #     redirect_to admins_rewards_path, notice: 'Reward was successfully updated.'
+    #   else
+    #     render :edit
+    #   end
+    # end
+
+    # def destroy
+    #   reward
+    #   @reward.destroy
+    #   redirect_to admins_rewards_path, notice: 'Reward was successfully destroyed.'
+    # end
+
     def create
       @reward = Reward.new(reward_params)
-      if @reward.save
-        redirect_to admins_rewards_path, notice: 'Reward was successfully created.'
-      else
-        render :new
-      end
+      ::Rewards::CreateService.new.call(reward: @reward)
+      flash[:notice] = 'Reward was successfully created.'
+      redirect_to admins_rewards_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:error] = e.to_s
+      render :new
     end
 
     def update
-      reward
-      if @reward.update!(reward_params)
-        redirect_to admins_rewards_path, notice: 'Reward was successfully updated.'
-      else
-        render :edit
-      end
+      ::Rewards::UpdateService.new.call(reward: reward, **reward_params.to_unsafe_hash.symbolize_keys)
+      flash[:notice] = 'Reward was successfully updated.'
+      redirect_to admins_rewards_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:error] = e.to_s
+      render :edit
     end
 
     def destroy

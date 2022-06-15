@@ -1,6 +1,34 @@
 <h1>Editing Kudo</h1>
 
-<%= render 'form', kudo: @kudo %>
+<%= form_with(model: @kudo) do |form| %>
 
-<%= link_to 'Show', @kudo %> |
-<%= link_to 'Back', kudos_path %>
+  <div class="col-md-6">
+    <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :content %>
+      <%= form.text_area :content, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :receiver_id %>
+      <%= form.collection_select :receiver_id, @available_employees, :id, :email, {}, {class: "form-control"}%>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :company_value %>
+      <%= form.collection_select :company_value_id, @company_values, :id, :title, {}, {class: "form-control"} %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Update Kudo", class: "btn btn-primary" %> 
+    </div>
+    <br>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @kudo, class: "btn btn-primary" %> &nbsp
+<%= link_to 'Back', kudos_path, class: "btn btn-secondary" %>

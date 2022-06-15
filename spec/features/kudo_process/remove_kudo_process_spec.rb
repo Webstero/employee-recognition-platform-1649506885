@@ -2,7 +2,8 @@ require 'rails_helper'
 require 'capybara/rspec'
 
 RSpec.describe 'The remove process', type: :feature do
-  let(:kudo) { create(:kudo) }
+  let!(:receiver) { create(:employee, earned_points: 1) }
+  let(:kudo) { create(:kudo, receiver_id: receiver.id) }
 
   before do
     visit new_employee_session_path

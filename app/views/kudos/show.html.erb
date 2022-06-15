@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @kudo.title %>
@@ -25,5 +23,5 @@
   <%= @kudo.company_value.title %>
 </p>
 
-<%= link_to 'Edit', edit_kudo_path(@kudo) %> &nbsp
-<%= link_to 'Back', kudos_path %>
+<%= link_to 'Edit', edit_kudo_path(@kudo), class: "btn btn-primary" %> &nbsp
+<%= link_to 'Back', kudos_path, class: "btn btn-secondary" %>

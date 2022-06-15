@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :rewards
-  
+  resources :orders
   resources :kudos
 
   root to: "kudos#index"

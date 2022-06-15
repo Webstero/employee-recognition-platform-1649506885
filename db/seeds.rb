@@ -21,5 +21,5 @@ end
 1.upto(5) do |i|
   reward = Reward.create! title: "Reward #{i}",
     description: Faker::Superhero.power,
-    price: Faker::Number.decimal(l_digits: 3, r_digits: 2)
+    price: Faker::Number.within(range: 1..10)
 end
