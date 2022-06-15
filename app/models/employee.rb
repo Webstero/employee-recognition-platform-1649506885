@@ -12,4 +12,20 @@ class Employee < ApplicationRecord
   has_many :orders, dependent: :destroy
 
   scope :all_without, ->(ids) { where.not(id: ids) }
+
+  def decrease_available_kudos
+    update!(number_of_available_kudos: number_of_available_kudos - 1)
+  end
+
+  def increase_available_kudos
+    update!(number_of_available_kudos: number_of_available_kudos + 1)
+  end
+
+  def decrease_earned_points
+    update!(earned_points: earned_points - 1)
+  end
+
+  def increase_earned_points
+    update!(earned_points: earned_points + 1)
+  end
 end
