@@ -4,8 +4,9 @@ module Orders
   class CreateService
     def call(order:, employee:)
       @price = order.reward.price
+      not_enough_earned_points(employee: employee)
       ActiveRecord::Base.transaction do
-        not_enough_earned_points(employee: employee)
+        order.price = @price
         order.save!
         payment_for_order(employee: employee)
       end
