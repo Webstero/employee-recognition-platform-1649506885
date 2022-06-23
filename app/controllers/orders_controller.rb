@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(**order_params, employee: current_employee)
-    ::Orders::CreateService.new.call(order: @order, employee: current_employee)
+    ::Orders::SaveService.new.call(order: @order, employee: current_employee)
     flash[:notice] = 'You bought a reward.'
     redirect_to orders_path
   rescue ActiveRecord::RecordInvalid => e
