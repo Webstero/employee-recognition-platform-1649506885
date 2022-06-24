@@ -27,10 +27,10 @@ RSpec.describe 'Employee listing buying rewards', type: :feature do
     expect(page).to have_text reward.title
     expect(page).to have_text reward.description
     expect(page).to have_text reward.price
-    expect(page).to have_text Order.first.created_at
+    expect(page).to have_text Order.first.created_at.strftime('%F')
     expect(page).to have_text second_reward.title
     expect(page).to have_text second_reward.description
     expect(page).to have_text second_reward.price
-    expect(page).to have_text Order.second.created_at
+    expect(page).to have_text Order.second.created_at.strftime('%F')
   end
 end

@@ -16,7 +16,7 @@ RSpec.describe 'Employee show order', type: :feature do
     click_link 'Buy'
     expect(page).to have_current_path(orders_path)
     click_link 'Show'
-    expect(page).to have_text Order.first.created_at
+    expect(page).to have_text Order.first.created_at.strftime('%F')
     expect(page).to have_text reward.title
     expect(page).to have_text reward.description
     expect(page).to have_text reward.price

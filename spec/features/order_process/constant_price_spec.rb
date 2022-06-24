@@ -5,7 +5,7 @@ RSpec.describe 'Employee checking constant price of bougth rewards', type: :feat
   let!(:reward) { create(:reward, price: 1) }
   let!(:employee) { create(:employee, earned_points: 1) }
   let!(:admin) { create(:admin) }
-  let!(:order) { create(:order, reward_id: reward.id, employee_id: employee.id, price: reward.price) }
+  let!(:order) { create(:order, reward_id: reward.id, employee_id: employee.id, bought_reward: reward) }
 
   before do
     sign_in employee

@@ -22,7 +22,7 @@
 
 <p>
   <strong>Creation time:</strong>
-  <%= @reward.created_at%>
+  <%= @reward.created_at.strftime("%F")%>
 </p>
 
 <%= link_to 'Back', rewards_path, class: "btn btn-secondary" %>
