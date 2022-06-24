@@ -15,10 +15,10 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.created_at %></td>
-        <td><%= order.reward.title %></td>
-        <td><%= order.reward.description %></td>
-        <td><%= order.price %></td>
+        <td><%= order.created_at.strftime("%F") %></td>
+        <td><%= order.bought_reward.title %></td>
+        <td><%= order.bought_reward.description %></td>
+        <td><%= order.bought_reward.price %></td>
         <td><%= link_to 'Show', order, class: "btn btn-dark" %></td>
       </tr>
     <% end %>
