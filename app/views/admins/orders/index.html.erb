@@ -1,10 +1,11 @@
 
-<h1>My orders</h1>
+<h1>List of bought rewards</h1>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Date of order:</th>
+      <th>Time of the purchase:</th>
+      <th>Email of employee</th>
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
@@ -16,17 +17,15 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.created_at.strftime("%F") %></td>
+        <td><%= order.employee.email %></td>
         <td><%= order.bought_reward.title %></td>
         <td><%= order.bought_reward.description %></td>
         <td><%= order.bought_reward.price %></td>
-        <td><%= link_to 'Show', order, class: "btn btn-dark" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'New Order', new_order_path, class: "btn btn-primary" %>
 
-
-
+<%= link_to 'Back', admins_root_path, class: "btn btn-secondary" %> 

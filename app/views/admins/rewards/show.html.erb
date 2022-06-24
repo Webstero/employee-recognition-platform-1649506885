@@ -20,7 +20,7 @@
 
 <p>
   <strong>Creation time:</strong>
-  <%= @reward.created_at%>
+  <%= @reward.created_at.strftime("%F")%>
 </p>
 
 <%= link_to 'Edit', edit_admins_reward_path(@reward), class: "btn btn-dark" %> &nbsp

@@ -19,7 +19,7 @@
         <td><%= reward.title %></td>
         <td><%= reward.description %></td>
         <td><%= reward.price %></td>
-        <td><%= reward.created_at %></td>
+        <td><%= reward.created_at.strftime("%F") %></td>
         <td><%= link_to 'Show', admins_reward_path(reward), class: "btn btn-dark" %></td>
         <td><%= link_to 'Edit', edit_admins_reward_path(reward), class: "btn btn-primary" %></td>
         <td><%= link_to 'Destroy', admins_reward_path(reward), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>

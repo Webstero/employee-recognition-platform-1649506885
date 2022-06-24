@@ -2,22 +2,22 @@
 
 <p>
   <strong>Date of order:</strong>
-  <%= @order.created_at %>
+  <%= @order.created_at.strftime("%F") %>
 </p>
 
 <p>
   <strong>Title:</strong>
-  <%= @order.reward.title %>
+  <%= @order.bought_reward.title %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @order.reward.description %>
+  <%= @order.bought_reward.description %>
 </p>
 
 <p>
   <strong>Price:</strong>
-  <%= @order.reward.price%>
+  <%= @order.bought_reward.price%>
 </p>
 
 

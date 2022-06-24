@@ -17,12 +17,12 @@ RSpec.describe 'Employee listing reward', type: :feature do
     expect(page).to have_text reward.id
     expect(page).to have_text reward.title
     expect(page).to have_text reward.price
-    expect(page).to have_text reward.created_at
+    expect(page).to have_text reward.created_at.strftime('%F')
     expect(page).not_to have_text reward.description
     expect(page).to have_text second_reward.id
     expect(page).to have_text second_reward.title
     expect(page).to have_text second_reward.price
-    expect(page).to have_text second_reward.created_at
+    expect(page).to have_text second_reward.created_at.strftime('%F')
     expect(page).not_to have_text second_reward.description
   end
 end

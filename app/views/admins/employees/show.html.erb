@@ -20,12 +20,12 @@
 
 <p>
   <strong>Creation time:</strong>
-  <%= @employee.created_at %>
+  <%= @employee.created_at.strftime("%F") %>
 </p>
 
 <p>
   <strong>Update time:</strong>
-  <%= @employee.updated_at %>
+  <%= @employee.updated_at.strftime("%F") %>
 </p>
 
 <%= link_to 'Edit', edit_admins_employee_path(@employee), class: "btn btn-primary"  %> &nbsp

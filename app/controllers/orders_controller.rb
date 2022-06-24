@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    @orders = Order.where(employee_id: current_employee.id).includes(:reward)
+    @orders = Order.where(employee_id: current_employee.id)
   end
 
   def show

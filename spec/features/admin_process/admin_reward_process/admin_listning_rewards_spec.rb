@@ -18,11 +18,11 @@ RSpec.describe 'Admin listing reward', type: :feature do
     expect(page).to have_text reward.title
     expect(page).to have_text reward.description
     expect(page).to have_text reward.price
-    expect(page).to have_text reward.created_at
+    expect(page).to have_text reward.created_at.strftime('%F')
     expect(page).to have_text second_reward.id
     expect(page).to have_text second_reward.title
     expect(page).to have_text second_reward.description
     expect(page).to have_text second_reward.price
-    expect(page).to have_text second_reward.created_at
+    expect(page).to have_text second_reward.created_at.strftime('%F')
   end
 end

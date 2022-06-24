@@ -19,7 +19,7 @@ RSpec.describe 'Employee show reward', type: :feature do
     expect(page).to have_text reward.title
     expect(page).to have_text reward.description
     expect(page).to have_text reward.price
-    expect(page).to have_text reward.created_at
+    expect(page).to have_text reward.created_at.strftime('%F')
     click_link 'Back'
     expect(page).to have_current_path(rewards_path)
   end
